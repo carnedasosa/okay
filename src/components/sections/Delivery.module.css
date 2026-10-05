@@ -99,6 +99,7 @@
 }
 
 .stamp {
+  display: none;
   position: absolute;
   right: -0.5rem;
   top: -5.5rem;
@@ -129,6 +130,7 @@
   }
 
   .stamp {
+    display: block;
     width: 9rem;
     right: -2rem;
     top: -5rem;
