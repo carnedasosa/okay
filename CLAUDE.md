@@ -1,1 +1,84 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 @AGENTS.md
+
+## Project
+
+Marketing site for **OKAY Bari Social Food Club** (smash burger / "cucina internazionale veloce",
+Via F. M. Brancaccio 18, Bari). Next.js 16 App Router, React 19, TypeScript strict, CSS Modules.
+Runtime deps are only `next`, `react`, `react-dom` — no CSS framework, no animation library.
+User-facing copy is Italian. Research, brand rationale, design system and open questions for the
+owner live in `docs/RESEARCH.md`; setup/deploy in `README.md`.
+
+## Commands
+
+```bash
+npm run dev            # dev server (Turbopack)
+npm run build          # production build — every route is statically prerendered
+npm run lint           # eslint (flat config, next core-web-vitals + typescript); `next lint` no longer exists
+npm run typecheck      # tsc --noEmit
+npm run format         # prettier --write . (printWidth 100)
+npm run check          # lint + typecheck + format:check + build — run before committing
+```
+
+There is no test suite. Verification is the `check` script plus running the built site
+(`npm run build && npm run start`) and looking at it.
+
+Env vars (see `.env.example`, must be set before `build`): `NEXT_PUBLIC_SITE_URL` (canonical/sitemap/
+OG/schema base; default is a placeholder domain) and `NEXT_PUBLIC_DRAFT_MARKERS` (default on).
+
+## Architecture
+
+**Content is data.** All venue facts and copy that may change live in `src/data/*` and are typed by
+`src/types/index.ts`; components only read them. Add a menu item, event, gallery photo, etc. by
+editing data, not JSX.
+
+**Verification model — don't invent facts.** Research could only partially confirm the venue's
+details, so uncertain values are wrapped as `Verifiable<T>` (`{ value, verified, source }`) or carry
+`verified` on menu items. This flag drives two things:
+
+- `lib/schema.ts` only emits verified data into JSON-LD (telephone, opening hours, priceRange,
+  reservations, menu prices appear automatically once `verified: true`).
+- `components/ui/DraftMark.tsx` renders a yellow dot next to unverified values while
+  `siteConfig.draftMarkers` is true; `PhotoSlot` likewise shows the photo brief.
+  Keep this contract when adding data: never mark something verified without a confirmed source.
+
+**Conditional features from data.** `data/events.ts` is empty on purpose (no public events found).
+`lib/events.getUpcomingEvents()` gates the `Events` home section, the "Serate" nav entry
+(`data/navigation.ts`) and `Event` JSON-LD — all appear when an upcoming event is added. Past events
+drop out at build time.
+
+**Photos.** No real images are bundled (copyright / not yet supplied). `data/gallery.ts` entries are
+art-directed placeholders; setting `src: "/photos/…"` (file in `public/photos/`) switches
+`PhotoSlot` to `next/image`.
+
+**Rendering & motion.**
+
+- Server Components by default; client components are only Header (mobile menu with focus trap),
+  `motion/Reveal`, `motion/PunctuationCycle`, `sections/Passport`, `sections/SmashAnatomy`.
+- Entry animations only apply under the `.js` class set on `<html>` by an inline script in
+  `app/layout.tsx`, so content is visible without JS.
+- Scroll-linked effects don't re-render React: `hooks/useScrollProgress` writes a 0→1 CSS custom
+  property (`--p`) via rAF and CSS does the math (Passport's pinned horizontal scroll on ≥64rem,
+  SmashAnatomy's exploding SVG layers).
+- Every animation must degrade under `prefers-reduced-motion` (global override in `styles/base.css`
+  plus explicit static states in components).
+- Hero receipt/LCP: on mobile the receipt is the LCP element, so its print animation is desktop-only
+  and the giant hero word is never hidden on load — keep it that way for Lighthouse.
+
+**Styling.** Design tokens (palette ink/paper/ketchup/mustard/pickle, fluid type scale, spacing,
+motion durations/easings, breakpoints 48rem/64rem) are in `src/styles/tokens.css`; `base.css` holds
+reset and a few globals (`.container`, `.mono`, `.grain`, `.sr-only`). Each component has a
+co-located `*.module.css`. Contrast was measured: paper text on ketchup passes AA only with the
+current `#CC2914`; mustard on ketchup is decorative only, never text.
+
+**Fonts.** Self-hosted via `next/font/local` in `lib/fonts.ts` (Bricolage Grotesque variable woff2
+with wdth/wght/opsz, IBM Plex Mono). `app/opengraph-image.tsx` uses separate static `.woff` files in
+`src/assets/og/` because `ImageResponse` cannot read woff2 or variable fonts.
+
+**SEO.** Per-page metadata via `lib/metadata.pageMetadata()` (keeps canonical/OG/Twitter in sync);
+`metadataBase` and absolute URLs come from `lib/site.ts`. File conventions in `src/app`: `sitemap.ts`,
+`robots.ts`, `manifest.ts`, `icon.svg`, `apple-icon.tsx`, `opengraph-image.tsx`. JSON-LD is rendered
+with `components/seo/JsonLd.tsx` (escapes `<`).
