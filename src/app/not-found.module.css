@@ -17,7 +17,6 @@
 }
 
 .title {
-  margin-top: var(--sp-4);
   font-size: clamp(4rem, 1rem + 14vw, 14rem);
   font-stretch: 75%;
   line-height: 0.8;
@@ -28,8 +27,12 @@
   color: var(--c-ketchup);
 }
 
-.lead {
+.code {
   margin-top: var(--sp-5);
+}
+
+.lead {
+  margin-top: var(--sp-3);
   font-size: var(--fs-lead);
 }
 

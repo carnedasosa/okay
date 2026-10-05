@@ -55,7 +55,8 @@
 .chips {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-2);
+  /* Tilted chips need room or their corners collide. */
+  gap: var(--sp-3);
 }
 
 .chips li {

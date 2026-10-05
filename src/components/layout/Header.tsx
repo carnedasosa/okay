@@ -153,6 +153,7 @@ export function Header() {
             rel="noopener noreferrer"
           >
             <Icon name="instagram" size={18} /> @{venue.social.instagram.handle}
+            <span className="sr-only"> (si apre in una nuova scheda)</span>
           </a>
         </div>
       </div>

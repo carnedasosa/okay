@@ -38,16 +38,18 @@ export function Voices() {
           </figcaption>
         </Reveal>
 
-        <div className={styles.themes}>
-          <p className={styles.themesLabel}>Nelle recensioni tornano sempre:</p>
-          <ul role="list" className={styles.chips}>
-            {reviewThemes.map((theme, index) => (
-              <Reveal as="li" key={theme} variant="stamp" delay={index}>
-                {theme}
-              </Reveal>
-            ))}
-          </ul>
-        </div>
+        {reviewThemes.length > 0 && (
+          <div className={styles.themes}>
+            <p className={styles.themesLabel}>Nelle recensioni tornano sempre:</p>
+            <ul role="list" className={styles.chips}>
+              {reviewThemes.map((theme, index) => (
+                <Reveal as="li" key={theme} variant="stamp" delay={index}>
+                  {theme}
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   );

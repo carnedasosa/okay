@@ -11,7 +11,6 @@ export function Visit() {
     <section className={cn(styles.visit, "grain")} aria-labelledby="visit-title">
       <div className={cn("container", styles.grid)}>
         <div>
-          <p className={cn("mono", styles.kicker)}>Dove &amp; quando</p>
           <h2 id="visit-title" className={styles.title}>
             Via Brancaccio, <span>18</span>.
           </h2>

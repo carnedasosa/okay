@@ -54,7 +54,6 @@ export function Passport() {
         <div className={cn("container", styles.head)}>
           <SectionHead
             id="passport-title"
-            kicker="Cucina internazionale veloce"
             title="Un menu col passaporto."
             intro="Ogni piatto arriva da un posto diverso. Tutti atterrano in Via Brancaccio, veloci e caldi."
             align="split"

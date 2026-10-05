@@ -30,6 +30,7 @@
 
 .track:focus-visible {
   outline-offset: -3px;
+  box-shadow: inset 0 0 0 6px var(--c-ink);
 }
 
 .card {
@@ -84,7 +85,7 @@
 .pickle {
   --card-bg: var(--c-pickle);
   --card-fg: var(--c-paper);
-  --card-accent: var(--c-mustard);
+  --card-accent: var(--c-mustard-soft);
 }
 
 .ink {
@@ -114,7 +115,7 @@
 }
 
 .origin span {
-  color: color-mix(in srgb, var(--card-fg) 70%, transparent);
+  color: var(--card-fg);
   font-weight: 400;
   font-size: var(--fs-mono-xs);
 }

@@ -26,15 +26,14 @@ export function Delivery() {
     <section id="a-casa" className={cn(styles.delivery, "grain")} aria-labelledby="delivery-title">
       <div className={cn("container", styles.grid)}>
         <div className={styles.copy}>
-          <p className={cn("mono", styles.kicker)}>Delivery &amp; asporto</p>
           <h2 id="delivery-title" className={styles.title}>
             Divano?
             <br />
             <span>Okay.</span>
           </h2>
           <p className={styles.lead}>
-            La stessa cucina, dove vuoi tu. Ordina con l&apos;app {venue.ordering.appName} o
-            chiamaci: prepariamo, impacchettiamo, partiamo.
+            Delivery e asporto: la stessa cucina, dove vuoi tu. Ordina con l&apos;app{" "}
+            {venue.ordering.appName} o chiamaci: prepariamo, impacchettiamo, partiamo.
           </p>
           <div className={styles.actions}>
             <ButtonLink href={venue.ordering.ios} variant="ink" icon="apple" size="l">

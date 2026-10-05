@@ -14,7 +14,7 @@ export const menu: MenuSection[] = [
   {
     id: "smash",
     title: "Smash",
-    kicker: "Schiacciati sulla piastra",
+    tagline: "Schiacciati sulla piastra",
     note: "Carne schiacciata sulla piastra rovente: bordo croccante, cuore succoso. Bun morbido.",
     items: [
       {
@@ -69,7 +69,7 @@ export const menu: MenuSection[] = [
   {
     id: "bun-toast",
     title: "Bun & Toast",
-    kicker: "Deli, ma veloce",
+    tagline: "Deli, ma veloce",
     items: [
       {
         id: "pastrami-bun",
@@ -102,7 +102,7 @@ export const menu: MenuSection[] = [
   {
     id: "starters",
     title: "Da condividere",
-    kicker: "Oppure no",
+    tagline: "Oppure no",
     items: [
       {
         id: "fries-caciocavallo",
@@ -148,7 +148,7 @@ export const menu: MenuSection[] = [
   {
     id: "dolci",
     title: "Dolci",
-    kicker: "Il finale",
+    tagline: "Il finale",
     items: [
       {
         id: "ny-cheesecake",
@@ -168,7 +168,7 @@ export const menu: MenuSection[] = [
   {
     id: "bere",
     title: "Da bere",
-    kicker: "Birre, vino, bibite",
+    tagline: "Birre, vino, bibite",
     note: "Selezione di birre, vino e soft drink. Chiedi in sala cosa c'è alla spina stasera.",
     items: [
       { id: "birre", name: "Birre", verified: false },

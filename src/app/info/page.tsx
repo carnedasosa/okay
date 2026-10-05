@@ -42,7 +42,6 @@ export default function InfoPage() {
     <>
       <section className={cn(styles.hero, "grain")} aria-labelledby="info-title">
         <div className="container">
-          <p className={cn("mono", styles.kicker)}>Dove &amp; quando</p>
           <h1 id="info-title" className={styles.title}>
             Ci trovi qui<span>.</span>
           </h1>
@@ -93,6 +92,7 @@ export default function InfoPage() {
             Festivi ed eventi possono cambiare gli orari: gli aggiornamenti sono su Instagram{" "}
             <a href={venue.social.instagram.url} target="_blank" rel="noopener noreferrer">
               @{venue.social.instagram.handle}
+              <span className="sr-only"> (si apre in una nuova scheda)</span>
             </a>
             .
           </p>

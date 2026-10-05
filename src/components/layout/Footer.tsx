@@ -76,6 +76,7 @@ export function Footer() {
                 className={styles.link}
               >
                 Instagram @{venue.social.instagram.handle}
+                <span className="sr-only"> (si apre in una nuova scheda)</span>
               </a>
             </li>
             <li>
@@ -86,6 +87,7 @@ export function Footer() {
                 className={styles.link}
               >
                 Linktree · merch
+                <span className="sr-only"> (si apre in una nuova scheda)</span>
               </a>
             </li>
             <li>
@@ -96,6 +98,7 @@ export function Footer() {
                 className={styles.link}
               >
                 App {venue.ordering.appName} · iOS
+                <span className="sr-only"> (si apre in una nuova scheda)</span>
               </a>
             </li>
             <li>
@@ -106,6 +109,7 @@ export function Footer() {
                 className={styles.link}
               >
                 App {venue.ordering.appName} · Android
+                <span className="sr-only"> (si apre in una nuova scheda)</span>
               </a>
             </li>
           </ul>

@@ -18,7 +18,7 @@ export function Events() {
   return (
     <section id="serate" className={styles.events} aria-labelledby="events-title">
       <div className="container">
-        <SectionHead id="events-title" kicker="In programma" title="Le serate." />
+        <SectionHead id="events-title" title="Le serate." />
         <ol role="list" className={styles.list}>
           {upcoming.map((event, index) => {
             const { date, time } = formatEventDate(event.startDate);

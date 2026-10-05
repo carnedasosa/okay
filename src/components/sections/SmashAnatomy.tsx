@@ -216,12 +216,12 @@ export function SmashAnatomy() {
         <SectionHead
           className={styles.head}
           id="smash-title"
-          kicker="Il piatto firma"
           title="Anatomia di uno smash."
           intro={
             <p>
               La carne va sulla piastra rovente e viene <em>schiacciata</em>: bordo croccante e
-              caramellato, cuore succoso. Questo è il Bacon Burger Double, strato per strato.
+              caramellato, cuore succoso. Questo è il Bacon Burger Double, il nostro piatto firma,
+              strato per strato.
             </p>
           }
         />

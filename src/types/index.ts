@@ -82,7 +82,8 @@ export type MenuItem = {
 export type MenuSection = {
   id: string;
   title: string;
-  kicker: string;
+  /** Short line printed under the section title. */
+  tagline: string;
   note?: string;
   items: MenuItem[];
 };
