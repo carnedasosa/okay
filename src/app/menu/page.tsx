@@ -27,11 +27,14 @@ const tagLabels = {
 } as const;
 
 export default function MenuPage() {
+  // A section without dishes would print a title over nothing: skip it, and
+  // its tab, until the data has items.
+  const sections = menu.filter((section) => section.items.length > 0);
+
   return (
     <>
       <section className={cn(styles.hero, "grain")} aria-labelledby="menu-title">
         <div className="container">
-          <p className={cn("mono", styles.kicker)}>Cucina internazionale veloce</p>
           <h1 id="menu-title" className={styles.title}>
             Il menu<span>.</span>
           </h1>
@@ -42,25 +45,37 @@ export default function MenuPage() {
         </div>
       </section>
 
-      <nav className={styles.tabs} aria-label="Sezioni del menu">
-        <ul role="list" className="container">
-          {menu.map((section) => (
-            <li key={section.id}>
-              <a href={`#${section.id}`}>{section.title}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      {sections.length > 0 && (
+        <nav className={styles.tabs} aria-label="Sezioni del menu">
+          <ul role="list" className="container">
+            {sections.map((section) => (
+              <li key={section.id}>
+                <a href={`#${section.id}`}>{section.title}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
 
       <div className={cn("container", styles.board)}>
         {siteConfig.draftMarkers && (
-          <p className={cn("mono", styles.draftNote)} role="note">
+          <p className={cn("mono prose", styles.draftNote)} role="note">
             <span aria-hidden="true">●</span> Bozza: piatti e prezzi ricostruiti dalle schede
             pubbliche ({menuUpdatedAt}). Da confermare con il locale prima della pubblicazione.
           </p>
         )}
 
-        {menu.map((section) => (
+        {sections.length === 0 && (
+          <div className={styles.empty} role="status">
+            <h2>Il menu si sta scrivendo.</h2>
+            <p>
+              Stiamo aggiornando piatti e prezzi. Nel frattempo chiamaci o passa in Via Brancaccio:
+              in sala te lo raccontiamo a voce.
+            </p>
+          </div>
+        )}
+
+        {sections.map((section) => (
           <section
             key={section.id}
             id={section.id}
@@ -68,8 +83,8 @@ export default function MenuPage() {
             aria-labelledby={`${section.id}-title`}
           >
             <header className={styles.sectionHead}>
-              <p className="mono">{section.kicker}</p>
               <h2 id={`${section.id}-title`}>{section.title}</h2>
+              <p className={cn("mono", styles.tagline)}>{section.tagline}</p>
               {section.note && <p className={styles.note}>{section.note}</p>}
             </header>
 
@@ -84,15 +99,17 @@ export default function MenuPage() {
                 >
                   <div className={styles.itemRow}>
                     <h3 className={styles.itemName}>{item.name}</h3>
-                    <span className={styles.leader} aria-hidden="true" />
                     {item.price !== undefined && (
-                      <p className={styles.price}>
-                        <span className="sr-only">Prezzo: </span>
-                        {formatPrice(item.price)}
-                        <span aria-hidden="true">€</span>
-                        <span className="sr-only"> euro</span>
-                        <DraftMark verified={item.verified} note="Prezzo da confermare" />
-                      </p>
+                      <>
+                        <span className={styles.leader} aria-hidden="true" />
+                        <p className={styles.price}>
+                          <span className="sr-only">Prezzo: </span>
+                          {formatPrice(item.price)}
+                          <span aria-hidden="true">€</span>
+                          <span className="sr-only"> euro</span>
+                          <DraftMark verified={item.verified} note="Prezzo da confermare" />
+                        </p>
+                      </>
                     )}
                   </div>
                   {item.description && <p className={styles.itemDesc}>{item.description}</p>}
@@ -110,7 +127,7 @@ export default function MenuPage() {
             </ul>
 
             {section.id === "smash" && extras.length > 0 && (
-              <p className={cn("mono", styles.extras)}>
+              <p className={cn("mono prose", styles.extras)}>
                 Extra:{" "}
                 {extras.map((extra) => `${extra.name} +${formatPrice(extra.price)} €`).join(" · ")}
               </p>
@@ -135,7 +152,7 @@ export default function MenuPage() {
               Chiama
             </ButtonLink>
           </div>
-          <p className={cn("mono", styles.allergens)}>
+          <p className="mono prose">
             Allergeni e intolleranze: chiedi allo staff, ti diciamo tutto su ogni piatto.
           </p>
         </aside>

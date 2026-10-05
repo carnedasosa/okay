@@ -9,13 +9,7 @@
   opacity: 0.07;
 }
 
-.kicker {
-  color: var(--c-mustard);
-}
-
 .title {
-  margin-top: var(--sp-4);
-  font-size: var(--fs-mega);
   font-stretch: 75%;
   line-height: 0.78;
   letter-spacing: var(--ls-mega);
@@ -49,6 +43,14 @@
   overflow-x: auto;
   scrollbar-width: none;
   padding-block: var(--sp-2);
+  /* Scroll shadows: an ink edge appears on the side that still has tabs to
+     reveal (the "local" covers hide it at either end). No JS needed. */
+  background:
+    linear-gradient(to right, var(--c-ketchup) 40%, transparent) left / 3rem 100% no-repeat local,
+    linear-gradient(to left, var(--c-ketchup) 40%, transparent) right / 3rem 100% no-repeat local,
+    linear-gradient(to right, rgb(21 19 15 / 0.5), transparent) left / 1.75rem 100% no-repeat,
+    linear-gradient(to left, rgb(21 19 15 / 0.5), transparent) right / 1.75rem 100% no-repeat,
+    var(--c-ketchup);
 }
 
 .tabs ul::-webkit-scrollbar {
@@ -88,7 +90,7 @@
   padding: var(--sp-4);
   border: 1.5px dashed var(--c-ink);
   background: var(--c-paper-2);
-  font-size: var(--fs-mono-xs);
+  font-size: var(--fs-mono-s);
 }
 
 .draftNote span {
@@ -107,7 +109,7 @@
   gap: var(--sp-2);
 }
 
-.sectionHead .mono {
+.tagline {
   color: var(--c-ketchup-deep);
 }
 
@@ -120,6 +122,7 @@
 }
 
 .note {
+  margin-top: var(--sp-2);
   max-width: 40rem;
   color: var(--text-muted);
 }
@@ -199,6 +202,23 @@
   border-color: var(--c-mustard) !important;
 }
 
+.empty {
+  display: grid;
+  gap: var(--sp-4);
+  padding-block: var(--sp-6);
+  border-top: 3px solid var(--c-ink);
+}
+
+.empty h2 {
+  font-size: var(--fs-h3);
+  font-stretch: 80%;
+}
+
+.empty p {
+  max-width: 44ch;
+  color: var(--text-muted);
+}
+
 .extras {
   color: var(--text-muted);
 }
@@ -224,10 +244,6 @@
   gap: var(--sp-3);
 }
 
-.allergens {
-  font-size: var(--fs-mono-xs);
-}
-
 @media (min-width: 64rem) {
   .section {
     grid-template-columns: 22rem 1fr;
@@ -242,6 +258,23 @@
 
   .items {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .empty {
+    display: grid;
+    gap: var(--sp-4);
+    padding-block: var(--sp-6);
+    border-top: 3px solid var(--c-ink);
+  }
+
+  .empty h2 {
+    font-size: var(--fs-h3);
+    font-stretch: 80%;
+  }
+
+  .empty p {
+    max-width: 44ch;
+    color: var(--text-muted);
   }
 
   .extras {

@@ -93,8 +93,11 @@ p {
 }
 
 :focus-visible {
+  /* Two-tone ring: mustard reads on dark and ketchup surfaces, the ink halo
+     on paper and mustard ones, so focus is visible on every section. */
   outline: 3px solid var(--focus);
-  outline-offset: 3px;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 7px var(--c-ink);
   border-radius: 2px;
 }
 
@@ -125,6 +128,12 @@ p {
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
   line-height: 1.4;
+}
+
+/* Mono for a full sentence: keep the receipt face, drop the tracked capitals. */
+.mono.prose {
+  text-transform: none;
+  letter-spacing: 0.02em;
 }
 
 /* Paper grain, applied by components that want texture. */

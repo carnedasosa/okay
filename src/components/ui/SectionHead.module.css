@@ -4,18 +4,6 @@
   margin-bottom: clamp(var(--sp-6), 4vw, var(--sp-8));
 }
 
-.kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-3);
-}
-
-.tick {
-  width: 1.75rem;
-  height: 2px;
-  background: currentColor;
-}
-
 .title {
   font-size: var(--fs-h2);
   font-stretch: 80%;
@@ -35,10 +23,6 @@
     grid-template-columns: 1.4fr 1fr;
     align-items: end;
     column-gap: var(--sp-8);
-  }
-
-  .split .kicker {
-    grid-column: 1 / -1;
   }
 
   .split .intro {

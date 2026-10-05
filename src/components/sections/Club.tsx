@@ -13,7 +13,6 @@ export function Club() {
         <div className={styles.intro}>
           <SectionHead
             id="club-title"
-            kicker="Social food club"
             title={
               <>
                 Un club.

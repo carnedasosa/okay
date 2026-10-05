@@ -1,4 +1,5 @@
 import { cn } from "@/lib/cn";
+import { Icon } from "@/components/ui/Icon";
 import styles from "./Marquee.module.css";
 
 type MarqueeProps = {
@@ -12,6 +13,7 @@ type MarqueeProps = {
 /**
  * Infinite ticker, pure CSS. The list is rendered twice for a seamless loop;
  * the copy is hidden from assistive tech, which reads the label once.
+ * A checkbox toggle stops the motion (WCAG 2.2.2) without any JavaScript.
  */
 export function Marquee({
   words,
@@ -43,6 +45,12 @@ export function Marquee({
         {row(false)}
         {row(true)}
       </div>
+      <label className={styles.pause}>
+        <input type="checkbox" className="sr-only" />
+        <Icon name="pause" size={18} className={styles.iconPause} />
+        <Icon name="play" size={16} className={styles.iconPlay} />
+        <span className="sr-only">Ferma lo scorrimento</span>
+      </label>
     </div>
   );
 }

@@ -16,10 +16,6 @@
   align-content: start;
 }
 
-.kicker {
-  color: var(--c-paper);
-}
-
 .title {
   font-size: var(--fs-h1);
   font-stretch: 75%;

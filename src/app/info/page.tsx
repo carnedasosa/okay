@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { venue } from "@/data/venue";
 import { cn } from "@/lib/cn";
-import { dayLabel, localPhone, telHref, weeklySchedule } from "@/lib/format";
+import { localPhone, telHref, weeklySchedule } from "@/lib/format";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbJsonLd } from "@/lib/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/Button";
 import { DraftMark } from "@/components/ui/DraftMark";
+import { HoursTable } from "./HoursTable";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = pageMetadata({
@@ -42,7 +43,6 @@ export default function InfoPage() {
     <>
       <section className={cn(styles.hero, "grain")} aria-labelledby="info-title">
         <div className="container">
-          <p className={cn("mono", styles.kicker)}>Dove &amp; quando</p>
           <h1 id="info-title" className={styles.title}>
             Ci trovi qui<span>.</span>
           </h1>
@@ -78,21 +78,12 @@ export default function InfoPage() {
             Orari
             <DraftMark verified={venue.hours.verified} note="Orari da confermare con il locale" />
           </h2>
-          <table className={styles.hours}>
-            <caption className="sr-only">Orari di apertura settimanali</caption>
-            <tbody>
-              {schedule.map(({ day, ranges }) => (
-                <tr key={day} className={ranges.length === 0 ? styles.closed : undefined}>
-                  <th scope="row">{dayLabel(day)}</th>
-                  <td>{ranges.length > 0 ? ranges.join(", ") : "Chiuso"}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <HoursTable schedule={schedule} />
           <p className={styles.muted}>
             Festivi ed eventi possono cambiare gli orari: gli aggiornamenti sono su Instagram{" "}
             <a href={venue.social.instagram.url} target="_blank" rel="noopener noreferrer">
               @{venue.social.instagram.handle}
+              <span className="sr-only"> (si apre in una nuova scheda)</span>
             </a>
             .
           </p>

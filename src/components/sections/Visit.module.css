@@ -14,11 +14,6 @@
   gap: var(--sp-7);
 }
 
-.kicker {
-  color: var(--c-mustard);
-  margin-bottom: var(--sp-4);
-}
-
 .title {
   font-size: var(--fs-h1);
   font-stretch: 75%;

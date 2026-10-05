@@ -40,6 +40,7 @@ const paths = {
       stroke="none"
     />
   ),
+  pause: <path d="M8.5 5v14m7-14v14" />,
   play: (
     <path d="M5 3.8v16.4c0 .6.7 1 1.2.7L20.4 12.7a.8.8 0 0 0 0-1.4L6.2 3.1c-.5-.3-1.2.1-1.2.7Z" />
   ),

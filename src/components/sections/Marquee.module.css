@@ -68,8 +68,51 @@
     animation-direction: reverse;
   }
 
-  .marquee:hover .track {
+  .marquee:hover .track,
+  .marquee:has(input:checked) .track {
     animation-play-state: paused;
+  }
+}
+
+/* Stop/play toggle: only exists while the ticker actually moves. */
+.pause {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: var(--gutter);
+  width: 2.75rem;
+  height: 2.75rem;
+  translate: 0 -50%;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  background: var(--mq-bg);
+  cursor: pointer;
+}
+
+.pause:has(:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 7px var(--c-ink);
+}
+
+.pause svg {
+  grid-area: 1 / 1;
+}
+
+.iconPlay,
+.pause:has(:checked) .iconPause {
+  visibility: hidden;
+}
+
+.pause:has(:checked) .iconPlay {
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pause {
+    display: none;
   }
 }
 
