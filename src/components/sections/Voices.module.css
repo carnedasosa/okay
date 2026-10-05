@@ -1,0 +1,85 @@
+.voices {
+  overflow-x: clip;
+  background: var(--c-paper);
+  padding-block: var(--section-y);
+}
+
+.inner {
+  display: grid;
+  gap: var(--sp-7);
+}
+
+.kicker {
+  color: var(--c-ketchup-deep);
+  font-weight: 500;
+}
+
+.quote {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.quote blockquote p {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: clamp(3rem, 1rem + 9vw, 10rem);
+  line-height: 0.88;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.mark {
+  color: var(--c-ketchup);
+}
+
+.quote figcaption a {
+  text-decoration-color: var(--c-ketchup);
+}
+
+.quote figcaption a:hover {
+  color: var(--c-ketchup-deep);
+}
+
+.themes {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.themesLabel {
+  font-size: var(--fs-lead);
+  font-weight: 600;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.chips li {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--c-ink);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-s);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.chips li:nth-child(3n + 1) {
+  background: var(--c-mustard);
+}
+
+.chips li:nth-child(3n + 2) {
+  transform: rotate(-2deg);
+}
+
+@media (min-width: 64rem) {
+  .themes {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: var(--sp-6);
+  }
+}

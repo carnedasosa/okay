@@ -1,0 +1,146 @@
+import type { Metadata } from "next";
+import { venue } from "@/data/venue";
+import { cn } from "@/lib/cn";
+import { dayLabel, localPhone, telHref, weeklySchedule } from "@/lib/format";
+import { pageMetadata } from "@/lib/metadata";
+import { breadcrumbJsonLd } from "@/lib/schema";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { ButtonLink } from "@/components/ui/Button";
+import { DraftMark } from "@/components/ui/DraftMark";
+import styles from "./page.module.css";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Dove & quando",
+  description:
+    "OKAY Bari Social Food Club è in Via Francesco Maria Brancaccio 18, 70124 Bari (Picone). Orari, telefono per prenotare, indicazioni, delivery e asporto.",
+  path: "/info",
+});
+
+const faq = [
+  {
+    q: "Si può prenotare?",
+    a: "Sì, con una telefonata. Per i gruppi meglio chiamare con un po' di anticipo.",
+  },
+  {
+    q: "Fate delivery e asporto?",
+    a: `Sì, con l'app ufficiale ${venue.ordering.appName} (iOS e Android) oppure ordinando al telefono.`,
+  },
+  {
+    q: "C'è qualcosa per chi non mangia carne?",
+    a: "Gyoza di verdure, nachos con guacamole, patatine. Per tutto il resto, chiedi allo staff.",
+  },
+  {
+    q: "E per allergie e intolleranze?",
+    a: "Dillo quando ordini: lo staff ti spiega ingredienti e allergeni di ogni piatto.",
+  },
+];
+
+export default function InfoPage() {
+  const schedule = weeklySchedule(venue.hours.value);
+
+  return (
+    <>
+      <section className={cn(styles.hero, "grain")} aria-labelledby="info-title">
+        <div className="container">
+          <p className={cn("mono", styles.kicker)}>Dove &amp; quando</p>
+          <h1 id="info-title" className={styles.title}>
+            Ci trovi qui<span>.</span>
+          </h1>
+        </div>
+      </section>
+
+      <div className={cn("container", styles.layout)}>
+        <section className={styles.block} aria-labelledby="where-title">
+          <h2 id="where-title" className="mono">
+            Indirizzo
+          </h2>
+          <address className={styles.address}>
+            {venue.address.street}
+            <br />
+            {venue.address.postalCode} {venue.address.city}
+          </address>
+          <p className={styles.muted}>
+            Quartiere {venue.address.neighbourhood}. Coordinate {venue.geo.lat.toFixed(5)},{" "}
+            {venue.geo.lng.toFixed(5)}.
+          </p>
+          <div className={styles.actions}>
+            <ButtonLink href={venue.maps.google} variant="ink" icon="pin">
+              Google Maps
+            </ButtonLink>
+            <ButtonLink href={venue.maps.apple} variant="outline" icon="pin">
+              Apple Mappe
+            </ButtonLink>
+          </div>
+        </section>
+
+        <section className={styles.block} aria-labelledby="hours-title">
+          <h2 id="hours-title" className="mono">
+            Orari
+            <DraftMark verified={venue.hours.verified} note="Orari da confermare con il locale" />
+          </h2>
+          <table className={styles.hours}>
+            <caption className="sr-only">Orari di apertura settimanali</caption>
+            <tbody>
+              {schedule.map(({ day, ranges }) => (
+                <tr key={day} className={ranges.length === 0 ? styles.closed : undefined}>
+                  <th scope="row">{dayLabel(day)}</th>
+                  <td>{ranges.length > 0 ? ranges.join(", ") : "Chiuso"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className={styles.muted}>
+            Festivi ed eventi possono cambiare gli orari: gli aggiornamenti sono su Instagram{" "}
+            <a href={venue.social.instagram.url} target="_blank" rel="noopener noreferrer">
+              @{venue.social.instagram.handle}
+            </a>
+            .
+          </p>
+        </section>
+
+        <section className={cn(styles.block, styles.contact)} aria-labelledby="contact-title">
+          <h2 id="contact-title" className="mono">
+            Prenota &amp; ordina
+          </h2>
+          <p>
+            <a href={telHref(venue.phone.value)} className={styles.phone}>
+              {localPhone(venue.phone.value)}
+            </a>
+            <DraftMark verified={venue.phone.verified} />
+          </p>
+          <p className={styles.muted}>Prenotazioni e ordini per l&apos;asporto al telefono.</p>
+          <div className={styles.actions}>
+            <ButtonLink href={telHref(venue.phone.value)} icon="phone">
+              Chiama
+            </ButtonLink>
+            <ButtonLink href={venue.ordering.ios} variant="ink" icon="apple">
+              App iOS
+            </ButtonLink>
+            <ButtonLink href={venue.ordering.android} variant="ink" icon="play">
+              App Android
+            </ButtonLink>
+          </div>
+        </section>
+
+        <section className={cn(styles.block, styles.faq)} aria-labelledby="faq-title">
+          <h2 id="faq-title" className="mono">
+            Domande frequenti
+          </h2>
+          {faq.map((item) => (
+            <details key={item.q} className={styles.details}>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </section>
+      </div>
+
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Dove & quando", path: "/info" },
+        ])}
+      />
+    </>
+  );
+}

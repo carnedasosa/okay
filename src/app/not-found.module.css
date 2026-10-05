@@ -1,0 +1,41 @@
+.wrap {
+  display: grid;
+  align-items: center;
+  min-height: 70svh;
+  padding-block: var(--sp-9);
+  background: var(--c-ink);
+  color: var(--c-paper);
+}
+
+.wrap::after {
+  filter: invert(1);
+  opacity: 0.07;
+}
+
+.wrap :global(.mono) {
+  color: var(--c-mustard);
+}
+
+.title {
+  margin-top: var(--sp-4);
+  font-size: clamp(4rem, 1rem + 14vw, 14rem);
+  font-stretch: 75%;
+  line-height: 0.8;
+  letter-spacing: var(--ls-mega);
+}
+
+.title span {
+  color: var(--c-ketchup);
+}
+
+.lead {
+  margin-top: var(--sp-5);
+  font-size: var(--fs-lead);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+}

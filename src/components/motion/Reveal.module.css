@@ -1,0 +1,31 @@
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .reveal {
+    transition:
+      opacity var(--dur-3) var(--ease-out) var(--reveal-delay, 0ms),
+      transform var(--dur-3) var(--ease-out) var(--reveal-delay, 0ms),
+      clip-path var(--dur-3) var(--ease-out) var(--reveal-delay, 0ms);
+  }
+
+  :global(.js) .rise:not(.visible) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+
+  :global(.js) .fade:not(.visible) {
+    opacity: 0;
+  }
+
+  :global(.js) .slide:not(.visible) {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+
+  :global(.js) .stamp {
+    transition-timing-function: var(--ease-snap);
+  }
+
+  :global(.js) .stamp:not(.visible) {
+    opacity: 0;
+    transform: scale(1.35) rotate(-8deg);
+  }
+}

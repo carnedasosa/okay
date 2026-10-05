@@ -1,0 +1,80 @@
+.marquee {
+  --mq-bg: var(--c-ketchup);
+  --mq-fg: var(--c-paper);
+  --mq-sep: var(--c-mustard);
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  background: var(--mq-bg);
+  color: var(--mq-fg);
+  padding-block: clamp(0.6rem, 1.5vw, 1.1rem);
+}
+
+.tilt {
+  margin-block: -1.2rem;
+  transform: rotate(-1.6deg) scale(1.03);
+}
+
+.ketchup {
+  --mq-bg: var(--c-ketchup);
+}
+
+.mustard {
+  --mq-bg: var(--c-mustard);
+  --mq-fg: var(--c-ink);
+  --mq-sep: var(--c-ketchup);
+}
+
+.ink {
+  --mq-bg: var(--c-ink);
+  --mq-fg: var(--c-paper);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+}
+
+.row {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.row li {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(1.75rem, 1rem + 3.5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sep {
+  margin-inline: 0.45em;
+  color: var(--mq-sep);
+  font-size: 0.6em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .track {
+    animation: scroll 38s linear infinite;
+  }
+
+  .reverse .track {
+    animation-direction: reverse;
+  }
+
+  .marquee:hover .track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,11 @@
+.mark {
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-inline-start: 0.35em;
+  vertical-align: 0.55em;
+  border-radius: 50%;
+  background: var(--c-mustard);
+  box-shadow: 0 0 0 1.5px var(--c-ink);
+  cursor: help;
+}

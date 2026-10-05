@@ -1,0 +1,250 @@
+.hero {
+  background: var(--c-ink);
+  color: var(--c-paper);
+  padding-block: var(--sp-8) var(--sp-7);
+}
+
+.hero::after {
+  filter: invert(1);
+  opacity: 0.07;
+}
+
+.kicker {
+  color: var(--c-mustard);
+}
+
+.title {
+  margin-top: var(--sp-4);
+  font-size: var(--fs-mega);
+  font-stretch: 75%;
+  line-height: 0.78;
+  letter-spacing: var(--ls-mega);
+  font-size: clamp(5rem, 1rem + 20vw, 17rem);
+}
+
+.title span {
+  color: var(--c-ketchup);
+}
+
+.lead {
+  margin-top: var(--sp-5);
+  max-width: 32rem;
+  font-size: var(--fs-lead);
+  line-height: 1.35;
+  color: color-mix(in srgb, var(--c-paper) 85%, transparent);
+}
+
+/* Sticky category tabs */
+.tabs {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 10;
+  background: var(--c-ketchup);
+  color: var(--c-paper);
+}
+
+.tabs ul {
+  display: flex;
+  gap: var(--sp-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-block: var(--sp-2);
+}
+
+.tabs ul::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding-inline: var(--sp-4);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-s);
+  font-weight: 500;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-1) var(--ease-out),
+    color var(--dur-1) var(--ease-out);
+}
+
+.tabs a:hover {
+  background: var(--c-paper);
+  color: var(--c-ink);
+}
+
+.board {
+  display: grid;
+  gap: var(--section-y);
+  padding-block: var(--sp-8) var(--section-y);
+}
+
+.draftNote {
+  padding: var(--sp-4);
+  border: 1.5px dashed var(--c-ink);
+  background: var(--c-paper-2);
+  font-size: var(--fs-mono-xs);
+}
+
+.draftNote span {
+  color: var(--c-mustard);
+  -webkit-text-stroke: 1px var(--c-ink);
+}
+
+.section {
+  display: grid;
+  gap: var(--sp-6);
+  scroll-margin-top: calc(var(--header-h) + 4rem);
+}
+
+.sectionHead {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.sectionHead .mono {
+  color: var(--c-ketchup-deep);
+}
+
+.sectionHead h2 {
+  font-size: var(--fs-h2);
+  font-stretch: 75%;
+  line-height: 0.85;
+  letter-spacing: var(--ls-mega);
+  text-transform: uppercase;
+}
+
+.note {
+  max-width: 40rem;
+  color: var(--text-muted);
+}
+
+.items {
+  display: grid;
+  gap: 0 var(--sp-8);
+}
+
+.item {
+  display: grid;
+  gap: var(--sp-2);
+  padding-block: var(--sp-4);
+  border-bottom: 1.5px solid var(--line);
+}
+
+.itemRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+}
+
+.itemName {
+  font-size: var(--fs-h4);
+  font-stretch: 85%;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.leader {
+  flex: 1;
+  min-width: 1.5rem;
+  border-bottom: 2px dotted color-mix(in srgb, var(--c-ink) 40%, transparent);
+  transform: translateY(-0.3em);
+}
+
+.price {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 1.0625rem;
+  white-space: nowrap;
+}
+
+.itemDesc {
+  max-width: 44ch;
+  color: var(--text-muted);
+  font-size: var(--fs-body-s);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.tags li {
+  padding: 0.15rem 0.5rem;
+  border: 1.5px solid currentColor;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tag-firma {
+  background: var(--c-ketchup);
+  border-color: var(--c-ketchup) !important;
+  color: var(--c-paper);
+}
+
+.tag-veg {
+  color: var(--c-pickle);
+}
+
+.tag-da-condividere {
+  background: var(--c-mustard);
+  border-color: var(--c-mustard) !important;
+}
+
+.extras {
+  color: var(--text-muted);
+}
+
+.order {
+  display: grid;
+  gap: var(--sp-4);
+  padding: clamp(var(--sp-6), 5vw, var(--sp-8));
+  background: var(--c-mustard);
+  box-shadow: var(--shadow-hard);
+}
+
+.order h2 {
+  font-size: var(--fs-h2);
+  font-stretch: 75%;
+  line-height: 0.85;
+  letter-spacing: var(--ls-mega);
+}
+
+.orderActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+.allergens {
+  font-size: var(--fs-mono-xs);
+}
+
+@media (min-width: 64rem) {
+  .section {
+    grid-template-columns: 22rem 1fr;
+    align-items: start;
+    gap: var(--sp-8);
+  }
+
+  .sectionHead {
+    position: sticky;
+    top: calc(var(--header-h) + 5rem);
+  }
+
+  .items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .extras {
+    grid-column: 2;
+  }
+}

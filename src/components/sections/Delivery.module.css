@@ -1,0 +1,136 @@
+.delivery {
+  background: var(--c-ketchup);
+  color: var(--c-paper);
+  padding-block: var(--section-y) var(--sp-7);
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  gap: var(--sp-8);
+}
+
+.copy {
+  display: grid;
+  gap: var(--sp-5);
+  align-content: start;
+}
+
+.kicker {
+  color: var(--c-paper);
+}
+
+.title {
+  font-size: var(--fs-h1);
+  font-stretch: 75%;
+  line-height: 0.82;
+  letter-spacing: var(--ls-mega);
+}
+
+.title span {
+  color: var(--c-ink);
+}
+
+.lead {
+  max-width: 30rem;
+  font-size: var(--fs-lead);
+  line-height: 1.35;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+.phone a {
+  color: inherit;
+  text-decoration-color: var(--c-mustard);
+}
+
+.steps {
+  position: relative;
+  display: grid;
+  gap: var(--sp-4);
+  align-content: center;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-4);
+  align-items: center;
+  padding: var(--sp-5);
+  background: var(--c-paper);
+  color: var(--c-ink);
+  box-shadow: 6px 6px 0 var(--c-ink);
+}
+
+.step:nth-child(2) {
+  margin-inline-start: clamp(0rem, 4vw, 3rem);
+}
+
+.step:nth-child(3) {
+  margin-inline-start: clamp(0rem, 8vw, 6rem);
+}
+
+.step h3 {
+  font-size: var(--fs-h4);
+  font-stretch: 85%;
+  line-height: 1.05;
+}
+
+.step p {
+  margin-top: var(--sp-1);
+  font-size: var(--fs-body-s);
+  color: var(--text-muted);
+}
+
+.stepIndex {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--c-mustard);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.stamp {
+  position: absolute;
+  right: -0.5rem;
+  top: -5.5rem;
+  width: 6.5rem;
+  color: var(--c-mustard);
+  transform: rotate(14deg);
+}
+
+.merch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-top: var(--sp-9);
+  padding-top: var(--sp-5);
+  border-top: 1.5px dashed color-mix(in srgb, var(--c-paper) 55%, transparent);
+}
+
+.merch strong {
+  font-weight: 700;
+}
+
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+  }
+
+  .stamp {
+    width: 9rem;
+    right: -2rem;
+    top: -5rem;
+  }
+}
