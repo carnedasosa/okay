@@ -57,7 +57,9 @@ art-directed placeholders; setting `src: "/photos/…"` (file in `public/photos/
 **Rendering & motion.**
 
 - Server Components by default; client components are only Header (mobile menu with focus trap),
-  `motion/Reveal`, `motion/PunctuationCycle`, `sections/Passport`, `sections/SmashAnatomy`.
+  `motion/Reveal`, `motion/PunctuationCycle`, `sections/Passport`, `sections/SmashAnatomy` and
+  `app/info/HoursTable` (marks today's row via `hooks/useToday`, Europe/Rome, browser-only so the
+  prerendered HTML has no "today").
 - Entry animations only apply under the `.js` class set on `<html>` by an inline script in
   `app/layout.tsx`, so content is visible without JS.
 - Scroll-linked effects don't re-render React: `hooks/useScrollProgress` writes a 0→1 CSS custom

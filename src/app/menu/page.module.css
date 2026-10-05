@@ -43,6 +43,14 @@
   overflow-x: auto;
   scrollbar-width: none;
   padding-block: var(--sp-2);
+  /* Scroll shadows: an ink edge appears on the side that still has tabs to
+     reveal (the "local" covers hide it at either end). No JS needed. */
+  background:
+    linear-gradient(to right, var(--c-ketchup) 40%, transparent) left / 3rem 100% no-repeat local,
+    linear-gradient(to left, var(--c-ketchup) 40%, transparent) right / 3rem 100% no-repeat local,
+    linear-gradient(to right, rgb(21 19 15 / 0.5), transparent) left / 1.75rem 100% no-repeat,
+    linear-gradient(to left, rgb(21 19 15 / 0.5), transparent) right / 1.75rem 100% no-repeat,
+    var(--c-ketchup);
 }
 
 .tabs ul::-webkit-scrollbar {

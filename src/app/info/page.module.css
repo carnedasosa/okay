@@ -89,6 +89,25 @@
   color: var(--text-muted);
 }
 
+.today {
+  color: var(--text);
+}
+
+.today td {
+  font-weight: 500;
+}
+
+.todayTag {
+  display: inline-block;
+  margin-inline-start: var(--sp-3);
+  padding: 0.2rem 0.5rem;
+  vertical-align: 0.2em;
+  background: var(--c-ketchup);
+  color: var(--c-paper);
+  font-size: var(--fs-mono-xs);
+  line-height: 1.2;
+}
+
 .phone {
   font-family: var(--font-display);
   font-weight: 800;
